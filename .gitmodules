@@ -1,0 +1,3 @@
+[submodule "uv-cpp"]
+	path = uv-cpp
+	url = https://github.com/sanjusss/uv-cpp.git
