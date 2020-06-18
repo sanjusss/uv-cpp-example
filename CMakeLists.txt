@@ -1,6 +1,4 @@
-﻿# CMakeList.txt: HelloWorld 的 CMake 项目，在此处包括源代码并定义
-# 项目特定的逻辑。
-#
+﻿
 cmake_minimum_required (VERSION 2.8)
 
 project ("uv-cpp-examples")
@@ -13,7 +11,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/uv-cpp)
 include_directories(${UV_CPP_HEADERS_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/asio/asio/include)
 
-# 将源代码添加到此项目的可执行文件。
 MACRO(SUBDIRLIST result curdir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   SET(dirlist "")
