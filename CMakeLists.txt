@@ -3,15 +3,34 @@
 #
 cmake_minimum_required (VERSION 2.8)
 
-project ("HelloWorld")
+project ("uv-cpp-examples")
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/uv-cpp)
 
 include_directories(${UV_CPP_HEADERS_DIR})
-
+include_directories(${PROJECT_SOURCE_DIR}/asio/asio/include)
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (${PROJECT_NAME} "HelloWorld.cpp" "HelloWorld.h")
+MACRO(SUBDIRLIST result curdir)
+  FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+  SET(dirlist "")
+  FOREACH(child ${children})
+    IF(IS_DIRECTORY ${curdir}/${child})
+      LIST(APPEND dirlist ${child})
+    ENDIF()
+  ENDFOREACH()
+  SET(${result} ${dirlist})
+ENDMACRO()
 
-target_link_libraries(${PROJECT_NAME} uv_cpp)
+set(EXAMPLES_DIR ${PROJECT_SOURCE_DIR}/uv-cpp/examples)
+SUBDIRLIST(EXAMPLES ${EXAMPLES_DIR} )
+
+FOREACH(example ${EXAMPLES})
+    set(example_sources "")
+    aux_source_directory(${EXAMPLES_DIR}/${example} example_sources)
+    add_executable (${example} ${example_sources})
+    target_link_libraries(${example} uv_cpp)
+ENDFOREACH()
+
+
 # TODO: 如有需要，请添加测试并安装目标。

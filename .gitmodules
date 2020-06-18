@@ -1,3 +1,6 @@
 [submodule "uv-cpp"]
 	path = uv-cpp
 	url = https://github.com/sanjusss/uv-cpp.git
+[submodule "asio"]
+	path = asio
+	url = https://github.com/chriskohlhoff/asio.git
